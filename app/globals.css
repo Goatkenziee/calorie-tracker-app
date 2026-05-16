@@ -2,61 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 3.6%;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 0 0% 3.6%;
-    --foreground: 0 0% 98%;
-  }
-}
-
-body {
-  color: rgb(var(--foreground));
-  background: rgb(var(--background));
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+body {
+  @apply bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+input::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  cursor: pointer;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-/* Focus visible */
-:focus-visible {
-  outline: 2px solid #10B981;
-  outline-offset: 2px;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,47 +1,43 @@
-# Calorie Tracker App — MVP Build Plan
+# Calorie Tracker App – Technical Plan
 
 ## Goal
-Build a modern, feature-rich calorie tracking app with food photo recognition, daily logs, nutritional breakdowns, and real-time analytics.
+Build a modern, mobile-first calorie tracking app with food-photo capture, manual logging, real-time tracking, and a clean, easy-to-read UI.
 
 ## Stack
-- **Frontend:** Next.js 14 (App Router) + React 18 + TypeScript + Tailwind CSS v3
-- **Image Recognition:** Clarifai API or placeholder for demo (can be upgraded to OpenAI Vision or Google Cloud Vision)
-- **Storage:** Browser localStorage (can upgrade to Firebase/Supabase)
-- **Charts:** Recharts for data visualization
-- **Forms:** React Hook Form + Zod validation
-- **Styling:** Tailwind + Lucide React icons
+- **Framework:** Next.js 14 (App Router) + React 18 + TypeScript
+- **Styling:** TailwindCSS 3
+- **State:** Zustand (lightweight)
+- **Photo Capture:** Native HTML5 `<input type="file">` + Canvas preview
+- **AI Recognition:** Cloudinary or simple placeholder (can upgrade to Clarifai/Google Vision later)
+- **Storage:** Browser localStorage (persists across sessions)
 - **Deploy:** Vercel
 
 ## File Tree
-- `app/layout.tsx` — root layout + navigation
-- `app/globals.css` — Tailwind directives
-- `app/page.tsx` — dashboard home with daily summary
-- `app/add-food/page.tsx` — food entry with camera/upload + AI recognition
-- `app/history/page.tsx` — daily/weekly/monthly food log
-- `app/nutritional-breakdown/page.tsx` — macros pie chart, nutrient breakdown
-- `app/settings/page.tsx` — daily calorie goal, dietary restrictions, profile
-- `components/FoodCard.tsx` — reusable food log entry card
-- `components/NutritionChart.tsx` — pie/bar chart for macros
-- `components/ProgressBar.tsx` — visual daily progress
-- `components/Camera.tsx` — camera capture UI
-- `lib/foodDatabase.ts` — hardcoded food calorie data (demo)
-- `lib/storage.ts` — localStorage wrapper
-- `lib/calculations.ts` — macro/calorie math utilities
-- `types/index.ts` — TypeScript interfaces
-- `package.json` — dependencies (Next.js, React, Tailwind, Recharts, React Hook Form, Zod, Lucide)
+- `package.json` — dependencies + scripts
+- `tsconfig.json` — TypeScript config
+- `tailwind.config.ts` — TailwindCSS config
+- `postcss.config.js` — PostCSS config
+- `next.config.mjs` — Next.js config
+- `app/layout.tsx` — root layout + provider
+- `app/globals.css` — base styles + Tailwind directives
+- `app/page.tsx` — home/dashboard (main tracker)
+- `app/log-meal/page.tsx` — meal logging (manual entry + photo)
+- `components/CalorieTracker.tsx` — real-time progress display
+- `components/MealList.tsx` — today's meals in a clean list
+- `components/FoodPhotoCapture.tsx` — camera input + preview
+- `components/GoalSettings.tsx` — set daily calorie target
+- `lib/store.ts` — Zustand store (meals, goal, theme)
+- `lib/utils.ts` — helper functions (calorie math, localStorage)
+- `README.md` — setup & usage
 
 ## Data / API
-- **Food Database:** Local JSON + hardcoded high-frequency foods (demo phase)
-- **Image Recognition:** Placeholder for Clarifai/OpenAI Vision (can integrate later)
-- **Storage:** Browser localStorage for user entries + settings
-- **No backend required** for MVP (can add Firebase/Supabase later)
+- **localStorage:** Stores daily meals, calorie goal, user preferences
+- **No external API required initially** (photo recognition can be mocked; upgrade path exists)
+- **Photo handling:** File input + Canvas for preview; can be sent to Cloudinary or stored as base64
 
-## Open Questions & Defaults
-- **Image Recognition Service:** Using placeholder demo → User can later connect Clarifai/OpenAI Vision API keys
-- **Database:** Browser localStorage → Can upgrade to Firebase
-- **Auth:** No authentication → Can add Firebase Auth later
-- **Serving:** Pre-loaded food database with 200+ common foods → User can add custom entries
-
----
-
-**Next Steps:** Write package.json → tsconfig → build the app structure → add features incrementally.
+## Open Questions (Defaults Chosen)
+1. **Daily calorie goal?** → Default 2000 kcal (user can adjust in app)
+2. **Photo recognition?** → Placeholder mode (user estimates calories); can integrate Clarifai/Google Vision later
+3. **Meal categories?** → Breakfast, Lunch, Dinner, Snacks (predefined in UI)
+4. **Dark mode?** → Yes, toggle in header (default: dark)
+5. **Mobile-first?** → Yes, responsive for all screen sizes
